@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,7 +49,7 @@
         --bg: #0a0a0a;
         --bg-card: #111111;
         --text: #f5f5f0;
-        --gold: #c9a84c;
+        --gold: #b99829;
         --overlay: rgba(0, 0, 0, 0.55);
         --font-title: "Barlow Condensed", sans-serif;
         --font-serif: "DM Serif Display", serif;
@@ -113,6 +113,43 @@
       }
 
       /* ============================================
+       LANGUAGE SWITCHER
+       ============================================ */
+      .lang-switcher {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 100;
+        display: flex;
+        gap: 12px;
+      }
+
+      .lang-btn {
+        padding: 8px 16px;
+        background: transparent;
+        border: 1.5px solid rgba(205, 127, 50, 0.4);
+        color: var(--gold);
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .lang-btn:hover {
+        border-color: var(--gold);
+        background: rgba(205, 127, 50, 0.1);
+      }
+
+      .lang-btn.active {
+        border-color: var(--gold);
+        background: rgba(205, 127, 50, 0.2);
+        box-shadow: 0 0 12px rgba(205, 127, 50, 0.4);
+      }
+
+      /* ============================================
        CTA BUTTON — Shared style
        ============================================ */
       .btn-cta {
@@ -138,6 +175,7 @@
         color: #0a0a0a;
       }
 
+      /* ============================================
       /* ============================================
        SECTION 1 — HERO
        ============================================ */
@@ -260,7 +298,7 @@
       .ticker__track {
         display: flex;
         width: max-content;
-        animation: tickerScroll 20s linear infinite;
+        animation: tickerScroll 35s linear infinite;
       }
 
       .ticker__content {
@@ -372,6 +410,94 @@
       .about__creds span {
         margin: 0 6px;
         opacity: 0.4;
+      }
+
+      /* ============================================
+       SEZIONE — WHAT WE OFFER
+       ============================================ */
+      .offer {
+        padding: 120px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .offer__header {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+
+      .offer__label {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+
+      .offer__title {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+
+      .offer__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .offer-card {
+        background: var(--bg-card);
+        padding: 40px 24px;
+        border: 1px solid transparent;
+        transition: border-color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+      }
+
+      .offer-card:hover {
+        border-color: var(--gold);
+      }
+
+      .offer-card__line {
+        width: 32px;
+        height: 2px;
+        background: var(--gold);
+        margin-bottom: 20px;
+      }
+
+      .offer-card__title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        font-size: 1.2rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+
+      .offer-card__desc {
+        font-family: var(--font-serif);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(245, 245, 240, 0.6);
+        flex-grow: 1;
+      }
+
+      @media (max-width: 900px) {
+        .offer__grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .offer__grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       /* ============================================
@@ -518,8 +644,15 @@
         margin: 0 auto;
         border-top: 1px solid rgba(201, 168, 76, 0.25);
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
+        gap: 40px;
+      }
+
+      .footer__left {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
       }
 
       .footer__logo {
@@ -528,6 +661,24 @@
         font-size: 1rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+      }
+
+      .footer__info {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        line-height: 1.6;
+        color: rgba(245, 245, 240, 0.6);
+      }
+
+      .footer__info p {
+        margin: 0;
+      }
+
+      .footer__right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
       }
 
       .footer__social {
@@ -547,6 +698,22 @@
         font-size: 0.8rem;
         letter-spacing: 0.1em;
         color: var(--gold);
+        text-decoration: none;
+      }
+
+      .footer__contact {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+      }
+
+      .footer__link {
+        color: var(--gold);
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .footer__link:hover {
+        opacity: 0.7;
       }
 
       /* ============================================
@@ -598,6 +765,12 @@
        SECTION 1 — HERO
        ============================================ -->
     <section class="hero" id="hero">
+      <!-- Language Switcher -->
+      <div class="lang-switcher">
+        <button class="lang-btn" onclick="setLanguage('it')">IT</button>
+        <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+      </div>
+
       <!-- Sostituire con video del coach — aggiungere src al tag video -->
       <video class="hero__video" autoplay muted loop playsinline poster="">
         <source src="Hero.mp4" type="video/mp4" />
@@ -607,12 +780,12 @@
 
       <div class="hero__content">
         <p class="hero__label reveal">Project UYM</p>
-        <h1 class="hero__title reveal reveal-delay-1">Unlock<br />Your Mind</h1>
+        <h1 class="hero__title reveal reveal-delay-1">Unlock<br /><span>Your Mind</span></h1>
         <p class="hero__tagline reveal reveal-delay-2">
-          Il tuo corpo impara quello che la tua mente decide
+          <span>Your body learns what your mind decides</span>
         </p>
         <a href="#candidati" class="btn-cta reveal reveal-delay-3"
-          >Candidati al Coaching</a
+          ><span>Apply for Coaching</span></a
         >
       </div>
 
@@ -637,21 +810,25 @@
       <div class="ticker__track">
         <!-- Il contenuto è duplicato per il loop seamless -->
         <div class="ticker__content">
-          UNLOCK YOUR MIND <span class="ticker__sep">✦</span> CALISTHENICS
-          COACHING <span class="ticker__sep">✦</span> SKILLS
-          <span class="ticker__sep">✦</span> STRENGTH
-          <span class="ticker__sep">✦</span> DISCIPLINE
-          <span class="ticker__sep">✦</span> MINDSET
-          <span class="ticker__sep">✦</span> PROJECT UYM
+          Mind warm up <span class="ticker__sep">✦</span> Body warm up
+          <span class="ticker__sep">✦</span> Volume
+          <span class="ticker__sep">✦</span> Intensity
+          <span class="ticker__sep">✦</span> Frequency
+          <span class="ticker__sep">✦</span> Activations - Executions - Grip
+          <span class="ticker__sep">✦</span> Routine
+          <span class="ticker__sep">✦</span> Recovery
+          <span class="ticker__sep">✦</span> Nutrition
           <span class="ticker__sep">✦</span>
         </div>
         <div class="ticker__content" aria-hidden="true">
-          UNLOCK YOUR MIND <span class="ticker__sep">✦</span> CALISTHENICS
-          COACHING <span class="ticker__sep">✦</span> SKILLS
-          <span class="ticker__sep">✦</span> STRENGTH
-          <span class="ticker__sep">✦</span> DISCIPLINE
-          <span class="ticker__sep">✦</span> MINDSET
-          <span class="ticker__sep">✦</span> PROJECT UYM
+          Mind warm up <span class="ticker__sep">✦</span> Body warm up
+          <span class="ticker__sep">✦</span> Volume
+          <span class="ticker__sep">✦</span> Intensity
+          <span class="ticker__sep">✦</span> Frequency
+          <span class="ticker__sep">✦</span> Activations - Executions - Grip
+          <span class="ticker__sep">✦</span> Routine
+          <span class="ticker__sep">✦</span> Recovery
+          <span class="ticker__sep">✦</span> Nutrition
           <span class="ticker__sep">✦</span>
         </div>
       </div>
@@ -663,31 +840,71 @@
     <section class="about" id="chi-sono">
       <div class="about__grid">
         <div class="about__image-wrap reveal">
-          <!-- foto del coach — sostituire src con immagine reale -->
-          <img
-            class="about__image"
-            id="aboutImage"
-            src="coach.jpg"
-            alt="Coach Project UYM"
-          />
+          <!-- foto del primo coach — sostituire src con immagine reale -->
+          <img class="about__image" src="Coach.jpeg" alt="Coach 1 Project UYM" />
           <div class="about__image-accent"></div>
         </div>
         <div class="about__text">
-          <p class="about__label reveal">Chi Sono</p>
+          <p class="about__label reveal">About Us</p>
           <h2 class="about__heading reveal reveal-delay-1">
-            Non è solo<br />allenamento.<br />È mentalità.
+            Siamo una squadra<br />dedicata al tuo<br />potenziale.
           </h2>
           <p class="about__bio reveal reveal-delay-2">
-            Sono un atleta di livello mondiale, tra i massimi esponenti del
-            calisthenics in Italia. Specializzato in skill puro e freestyle, ho
-            dedicato anni a padroneggiare il corpo e la mente per raggiungere
-            l'eccellenza. Ora metto la mia esperienza al servizio di chi vuole
-            iniziare il proprio percorso — con disciplina, metodo e risultati
-            concreti.
+            Ci chiamiamo Zanon Giovanni e Umberto Maroso, due atleti di
+            calisthenics da più di 7 anni di esperienza. Abbiamo deciso di
+            intraprendere questo progetto assieme per dare un approccio diverso
+            all’allenamento quotidiano, per raggiungere i propri obiettivi in
+            maniera sicura e intelligente. Il nostro affiancamento non è solo
+            nel campo dell’allenamento con la semplice scheda copia/incolla, ma
+            comprende tutto il relativo ecosistema, come mindset, recupero,
+            metodologia e molto altro.
           </p>
           <p class="about__creds reveal reveal-delay-3">
-            TOP ATHLETE <span>·</span> SKILL SPECIALIST <span>·</span> FREESTYLE
-            <span>·</span> CALISTHENICS PURO
+            COACHING <span>·</span> MENTORSHIP <span>·</span> TRANSFORMATION
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+       SEZIONE — WHAT WE OFFER
+       ============================================ -->
+    <section class="offer" id="cosa-offriamo">
+      <div class="offer__header">
+        <p class="offer__label reveal">Cosa Offriamo</p>
+        <h2 class="offer__title reveal reveal-delay-1">
+          Il Tuo Percorso,<br />Il Nostro Metodo<br />
+        </h2>
+        <p class="offer__label reveal"><br />(After a preliminary video call to understand your goals and level)</p>
+      </div>
+      <div class="offer__grid">
+      <div class="offer__grid">
+        <div class="offer-card reveal">
+          <div class="offer-card__line"></div>
+          <h3 class="offer-card__title">1:1 Assistance</h3>
+          <p class="offer-card__desc">
+            We follow you step by step, based on your progress and adapting everything to your pace.
+          </p>
+        </div>
+        <div class="offer-card reveal reveal-delay-1">
+          <div class="offer-card__line"></div>
+          <h3 class="offer-card__title">Custom Programming</h3>
+          <p class="offer-card__desc">
+            Each week calibrated to your level, recovery and goals. The right path to your objectives.
+          </p>
+        </div>
+        <div class="offer-card reveal reveal-delay-2">
+          <div class="offer-card__line"></div>
+          <h3 class="offer-card__title">Ebook Unlock Your Mind + Tips</h3>
+          <p class="offer-card__desc">
+            Our complete methodology and knowledge to transform your body and mind.
+          </p>
+        </div>
+        <div class="offer-card reveal reveal-delay-3">
+          <div class="offer-card__line"></div>
+          <h3 class="offer-card__title">Check-In Call</h3>
+          <p class="offer-card__desc">
+            Periodic reviews to track progress, adjust course, and keep you motivated.
           </p>
         </div>
       </div>
@@ -698,8 +915,8 @@
        ============================================ -->
     <section class="process" id="come-funziona">
       <div class="process__header">
-        <p class="process__label reveal">Come Funziona</p>
-        <h2 class="process__title reveal reveal-delay-1">Il Percorso</h2>
+        <p class="process__label reveal">How It Works</p>
+        <h2 class="process__title reveal reveal-delay-1">Next Steps</h2>
       </div>
       <div class="process__steps">
         <!-- Step 1 -->
@@ -721,11 +938,8 @@
             </svg>
           </div>
           <p class="step__number">01</p>
-          <h3 class="step__heading">Compila il Form</h3>
-          <p class="step__desc">
-            Raccontaci dove sei e dove vuoi arrivare. Ogni percorso parte da una
-            decisione.
-          </p>
+          <h3 class="step__heading">Fill the Form</h3>
+          <p class="step__desc">Tell us where you are and where you want to go.</p>
         </div>
 
         <!-- Arrow -->
@@ -758,7 +972,7 @@
             </svg>
           </div>
           <p class="step__number">02</p>
-          <h3 class="step__heading">Call Conoscitiva</h3>
+          <h3 class="step__heading">Discovery Call</h3>
           <p class="step__desc">
             Una chiamata gratuita per conoscerci, capire i tuoi obiettivi e
             costruire fiducia.
@@ -793,7 +1007,7 @@
             </svg>
           </div>
           <p class="step__number">03</p>
-          <h3 class="step__heading">Programma su Misura</h3>
+          <h3 class="step__heading">Custom Program</h3>
           <p class="step__desc">
             Il tuo piano personalizzato inizia qui. Progressioni chiare,
             risultati misurabili.
@@ -812,7 +1026,9 @@
         Non aspettare il momento giusto. Crealo.
       </p>
       <!-- sostituire href con link Google Form -->
-      <a href="#" class="btn-cta reveal reveal-delay-2"
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSd6aASW0mGYugOE4DOtBxQ_4JYq_Vl9X-SoKi3AWypTYrqfmA/viewform?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPMTI0MDI0NTc0Mjg3NDE0AAGnjOpZPVjb2PAhMLFPEYhLd1v0vhCTFtmZL478CjUmymc3bJMJMXEqtqBcQh8_aem_eYMfGxPBQNxQANS1KUqo1A"
+        class="btn-cta reveal reveal-delay-2"
         >Inizia il Tuo Percorso</a
       >
     </section>
@@ -821,28 +1037,63 @@
        SECTION 6 — FOOTER
        ============================================ -->
     <footer class="footer">
-      <div class="footer__logo">Unlock Your Mind</div>
-      <div class="footer__social">
-        <!-- Instagram SVG icon -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
-          />
-        </svg>
-        <a
-          href="https://instagram.com/project_uym"
-          target="_blank"
-          rel="noopener"
-          class="footer__handle"
-          >@project_uym</a
-        >
+      <div class="footer__left">
+        <div class="footer__logo">Unlock Your Mind</div>
+        <div class="footer__info">
+          <p><a href="#privacy" class="footer__link">Privacy</a></p>
+          <p>Zanon Giovanni</p>
+          <p>P.IVA: 04610150247</p>
+        </div>
+      </div>
+      <div class="footer__right">
+        <div class="footer__social">
+          <!-- Instagram SVG icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+            />
+          </svg>
+          <a
+            href="https://instagram.com/project_uym"
+            target="_blank"
+            rel="noopener"
+            class="footer__handle"
+            >@project_uym</a
+          >
+        </div>
+        <div class="footer__contact">
+          <a href="mailto:unlockyourmindsw@gmail.com" class="footer__link">unlockyourmindsw@gmail.com</a>
+        </div>
       </div>
     </footer>
 
+    <!-- Language switching script - MUST load before inline script -->
     <!-- ============================================
        JAVASCRIPT — Animazioni & Interazioni
        ============================================ -->
     <script>
+      // Language switching
+      function setLanguage(lang) {
+        localStorage.setItem('siteLang', lang);
+        if (lang === 'en') {
+          window.location.href = 'index-en.html';
+        } else {
+          window.location.href = 'index.html';
+        }
+      }
+
+      // Update active button on load
+      document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.lang-btn');
+        buttons.forEach(btn => {
+          if (btn.textContent === 'EN') {
+            btn.onclick = function() { setLanguage('en'); };
+          } else {
+            btn.onclick = function() { setLanguage('it'); };
+          }
+        });
+      });
+
       (function () {
         "use strict";
 
@@ -914,5 +1165,6 @@
         });
       })();
     </script>
+
   </body>
 </html>

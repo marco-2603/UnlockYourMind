@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unlock Your Mind — Project UYM | Calisthenics Coaching</title>
+
+    <!-- Fontsource CDN — Barlow Condensed (800, 900) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/800.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/900.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5.1.0/400.css"
+    />
+    <!-- Fontsource CDN — Barlow (400) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/barlow@5.1.0/400.css"
+    />
+    <!-- Fontsource CDN — DM Serif Display (400, italic) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/dm-serif-display@5.1.0/400.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/dm-serif-display@5.1.0/400-italic.css"
+    />
+
+    <style>
+      /* ============================================
+       RESET & BASE
+       ============================================ */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #0a0a0a;
+        --bg-card: #111111;
+        --text: #f5f5f0;
+        --gold: #b99829;
+        --overlay: rgba(0, 0, 0, 0.55);
+        --font-title: "Barlow Condensed", sans-serif;
+        --font-serif: "DM Serif Display", serif;
+        --font-body: "Barlow", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ============================================
+       UTILITY — REVEAL ANIMATION
+       ============================================ */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ============================================
+       LANGUAGE SWITCHER
+       ============================================ */
+      .lang-switcher {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 100;
+        display: flex;
+        gap: 12px;
+      }
+
+      .lang-btn {
+        padding: 8px 16px;
+        background: transparent;
+        border: 1.5px solid rgba(205, 127, 50, 0.4);
+        color: var(--gold);
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .lang-btn:hover {
+        border-color: var(--gold);
+        background: rgba(205, 127, 50, 0.1);
+      }
+
+      .lang-btn.active {
+        border-color: var(--gold);
+        background: rgba(205, 127, 50, 0.2);
+        box-shadow: 0 0 12px rgba(205, 127, 50, 0.4);
+      }
+
+      /* ============================================
+       CTA BUTTON — Shared style
+       ============================================ */
+      .btn-cta {
+        display: inline-block;
+        padding: 16px 48px;
+        border: 1.5px solid var(--gold);
+        color: var(--gold);
+        font-family: var(--font-title);
+        font-weight: 800;
+        font-size: 1rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        background: transparent;
+        cursor: pointer;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+        position: relative;
+      }
+
+      .btn-cta:hover {
+        background: var(--gold);
+        color: #0a0a0a;
+      }
+
+      /* ============================================
+      /* ============================================
+       SECTION 1 — HERO
+       ============================================ */
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .hero__video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%) contrast(1.2);
+        z-index: 0;
+      }
+
+      .hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: var(--overlay);
+        z-index: 1;
+      }
+
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 24px;
+      }
+
+      .hero__label {
+        font-family: var(--font-body);
+        font-weight: 400;
+        font-size: 0.75rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 16px;
+      }
+
+      .hero__title {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: clamp(3rem, 10vw, 7.5rem);
+        line-height: 0.95;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 20px;
+      }
+
+      .hero__tagline {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        color: var(--text);
+        opacity: 0.85;
+        margin-bottom: 48px;
+      }
+
+      /* Scroll arrow */
+      .hero__scroll {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        animation: bounceArrow 2s ease-in-out infinite;
+      }
+
+      .hero__scroll-text {
+        font-family: var(--font-body);
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.7;
+      }
+
+      .hero__scroll svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--gold);
+        opacity: 0.7;
+      }
+
+      @keyframes bounceArrow {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(10px);
+        }
+      }
+
+      /* ============================================
+       SECTION 2 — TICKER
+       ============================================ */
+      .ticker {
+        background: var(--bg-card);
+        overflow: hidden;
+        padding: 14px 0;
+        border-top: 1px solid rgba(201, 168, 76, 0.15);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      }
+
+      .ticker__track {
+        display: flex;
+        width: max-content;
+        animation: tickerScroll 35s linear infinite;
+      }
+
+      .ticker__content {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        white-space: nowrap;
+        font-family: var(--font-title);
+        font-weight: 800;
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      .ticker__sep {
+        margin: 0 24px;
+        opacity: 0.5;
+        font-size: 0.7rem;
+      }
+
+      @keyframes tickerScroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ============================================
+       SECTION 3 — CHI SONO
+       ============================================ */
+      .about {
+        padding: 120px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .about__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .about__image-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about__image {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        filter: grayscale(100%) contrast(1.2);
+        transition: transform 0.1s linear;
+      }
+
+      .about__image-accent {
+        position: absolute;
+        bottom: -12px;
+        right: -12px;
+        width: 60%;
+        height: 4px;
+        background: var(--gold);
+      }
+
+      .about__text {
+        padding: 20px 0;
+      }
+
+      .about__label {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 16px;
+      }
+
+      .about__heading {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        line-height: 1;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+
+      .about__bio {
+        font-family: var(--font-serif);
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: rgba(245, 245, 240, 0.8);
+        margin-bottom: 32px;
+      }
+
+      .about__creds {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.8;
+      }
+
+      .about__creds span {
+        margin: 0 6px;
+        opacity: 0.4;
+      }
+
+      /* ============================================
+       SEZIONE — COSA OFFRIAMO
+       ============================================ */
+      .offer {
+        padding: 120px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .offer__header {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+
+      .offer__label {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+
+      .offer__title {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+
+      .offer__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .offer-card {
+        background: var(--bg-card);
+        padding: 40px 24px;
+        border: 1px solid transparent;
+        transition: border-color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+      }
+
+      .offer-card:hover {
+        border-color: var(--gold);
+      }
+
+      .offer-card__line {
+        width: 32px;
+        height: 2px;
+        background: var(--gold);
+        margin-bottom: 20px;
+      }
+
+      .offer-card__title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        font-size: 1.2rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+
+      .offer-card__desc {
+        font-family: var(--font-serif);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(245, 245, 240, 0.6);
+        flex-grow: 1;
+      }
+
+      @media (max-width: 900px) {
+        .offer__grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .offer__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============================================
+       SECTION 4 — COME FUNZIONA
+       ============================================ */
+      .process {
+        padding: 120px 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .process__header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .process__label {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+
+      .process__title {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .process__steps {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .process__arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 48px;
+      }
+
+      .process__arrow svg {
+        width: 28px;
+        height: 28px;
+        stroke: var(--gold);
+      }
+
+      .step {
+        text-align: center;
+        padding: 32px 20px;
+      }
+
+      .step__icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1.5px solid rgba(201, 168, 76, 0.3);
+        border-radius: 50%;
+      }
+
+      .step__icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: var(--gold);
+      }
+
+      .step__number {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+
+      .step__heading {
+        font-family: var(--font-title);
+        font-weight: 800;
+        font-size: 1.15rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .step__desc {
+        font-family: var(--font-serif);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(245, 245, 240, 0.6);
+      }
+
+      /* ============================================
+       SECTION 5 — CTA FINALE
+       ============================================ */
+      .final-cta {
+        background: var(--bg-card);
+        padding: 120px 24px;
+        text-align: center;
+        position: relative;
+      }
+
+      .final-cta__border {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 2px;
+        background: var(--gold);
+      }
+
+      .final-cta__title {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .final-cta__sub {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        color: rgba(245, 245, 240, 0.7);
+        margin-bottom: 48px;
+      }
+
+      /* ============================================
+       SECTION 6 — FOOTER
+       ============================================ */
+      .footer {
+        padding: 40px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+        border-top: 1px solid rgba(201, 168, 76, 0.25);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .footer__left {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .footer__logo {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .footer__info {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        line-height: 1.6;
+        color: rgba(245, 245, 240, 0.6);
+      }
+
+      .footer__info p {
+        margin: 0;
+      }
+
+      .footer__right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
+      }
+
+      .footer__social {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .footer__social svg {
+        width: 20px;
+        height: 20px;
+        fill: var(--gold);
+      }
+
+      .footer__handle {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        color: var(--gold);
+        text-decoration: none;
+      }
+
+      .footer__contact {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+      }
+
+      .footer__link {
+        color: var(--gold);
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .footer__link:hover {
+        opacity: 0.7;
+      }
+
+      /* ============================================
+       RESPONSIVE
+       ============================================ */
+      @media (max-width: 900px) {
+        .about__grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .about__image {
+          aspect-ratio: 4 / 3;
+        }
+
+        .process__steps {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+
+        .process__arrow {
+          transform: rotate(90deg);
+          padding-top: 0;
+          padding: 8px 0;
+        }
+
+        .footer {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero__title {
+          font-size: clamp(2.5rem, 12vw, 4rem);
+        }
+
+        .about,
+        .process,
+        .final-cta {
+          padding: 80px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================
+       SECTION 1 — HERO
+       ============================================ -->
+    <section class="hero" id="hero">
+      <!-- Language Switcher -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('it')">IT</button>
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+      </div>
+
+      <!-- Sostituire con video del coach — aggiungere src al tag video -->
+      <video class="hero__video" autoplay muted loop playsinline poster="">
+        <source src="Hero.mp4" type="video/mp4" />
+        <!-- sostituire con video del coach -->
+      </video>
+      <div class="hero__overlay"></div>
+
+      <div class="hero__content">
+        <p class="hero__label reveal">Project UYM</p>
+        <h1 class="hero__title reveal reveal-delay-1">Unlock<br /><span>Your Mind</span></h1>
+        <p class="hero__tagline reveal reveal-delay-2">
+          <span>Il tuo corpo impara quello che la tua mente decide</span>
+        </p>
+        <a href="#candidati" class="btn-cta reveal reveal-delay-3"
+          ><span>Candidati al Coaching</span></a
+        >
+      </div>
+
+      <div class="hero__scroll">
+        <span class="hero__scroll-text">Scroll</span>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============================================
+       SECTION 2 — TICKER ORIZZONTALE
+       ============================================ -->
+    <div class="ticker">
+      <div class="ticker__track">
+        <!-- Il contenuto è duplicato per il loop seamless -->
+        <div class="ticker__content">
+          Mind warm up <span class="ticker__sep">✦</span> Body warm up
+          <span class="ticker__sep">✦</span> Volume
+          <span class="ticker__sep">✦</span> Intensità
+          <span class="ticker__sep">✦</span> Frequenza
+          <span class="ticker__sep">✦</span> Attivazioni - Esecuzioni - Grip
+          <span class="ticker__sep">✦</span> Routine
+          <span class="ticker__sep">✦</span> Recupero
+          <span class="ticker__sep">✦</span> Alimentazione
+          <span class="ticker__sep">✦</span>
+        </div>
+        <div class="ticker__content" aria-hidden="true">
+          Mind warm up <span class="ticker__sep">✦</span> Body warm up
+          <span class="ticker__sep">✦</span> Volume
+          <span class="ticker__sep">✦</span> Intensità
+          <span class="ticker__sep">✦</span> Frequenza
+          <span class="ticker__sep">✦</span> Attivazioni - Esecuzioni - Grip
+          <span class="ticker__sep">✦</span> Routine
+          <span class="ticker__sep">✦</span> Recupero
+          <span class="ticker__sep">✦</span> Alimentazione
+          <span class="ticker__sep">✦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+       SECTION 3 — CHI SONO
+       ============================================ -->
+    <section class="about" id="chi-sono">
+      <div class="about__grid">
+        <div class="about__image-wrap reveal">
+          <!-- foto del primo coach — sostituire src con immagine reale -->
+          <img class="about__image" src="Coach.jpeg" alt="Coach 1 Project UYM" />
+          <div class="about__image-accent"></div>
+        </div>
+        <div class="about__text">
+          <p class="about__label reveal">Chi Siamo</p>
+          <h2 class="about__heading reveal reveal-delay-1">
+            Siamo una squadra<br />dedicata al tuo<br />potenziale.
+          </h2>
+          <p class="about__bio reveal reveal-delay-2">
+            Ci chiamiamo Zanon Giovanni e Umberto Maroso, due atleti di
+            calisthenics da più di 7 anni di esperienza. Abbiamo deciso di
+            intraprendere questo progetto assieme per dare un approccio diverso
+            all’allenamento quotidiano, per raggiungere i propri obiettivi in
+            maniera sicura e intelligente. Il nostro affiancamento non è solo
+            nel campo dell’allenamento con la semplice scheda copia/incolla, ma
+            comprende tutto il relativo ecosistema, come mindset, recupero,
+            metodologia e molto altro.
+          </p>
+          <p class="about__creds reveal reveal-delay-3">
+            COACHING <span>·</span> MENTORSHIP <span>·</span> TRANSFORMATION
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+       SEZIONE — COSA OFFRIAMO
+       ============================================ -->
+    <section class="offer" id="cosa-offriamo">
+      <div class="offer__header">
+        <p class="offer__label reveal">Cosa Offriamo</p>
+        <h2 class="offer__title reveal reveal-delay-1">
+          Il Tuo Percorso,<br />Il Nostro Metodo<br />
+        </h2>
+        <p class="offer__label reveal"><br />(Dopo la videocall preliminare per capire gli obiettivi e il livello)</p>
+      </div>
+      <div class="offer__grid">
+      <div class="offer__grid">
+        <div class="offer-card reveal">
+          <div class="offer-card__line"></div>
+          <h3 class="offer-card__title">Assistenza 1:1</h3>
+          <p class="offer-card__desc">
+            Ti seguiamo passo dopo passo, basandoci sui tuoi progressi e adattando tutto ai tuoi tempi.
+          </p>
+        </div>
+        <div class="offer-card reveal reveal-delay-1">
+          <div class="offer-card__line"></div>
+          <h3 class="offer-card__title">Programmazione Su Misura</h3>
+          <p class="offer-card__desc">
+            Ogni settimana calibrata al tuo livello, recupero e ambizioni. La strada giusta verso i tuoi obiettivi.
+          </p>
+        </div>
+        <div class="offer-card reveal reveal-delay-2">
+          <div class="offer-card__line"></div>
+          <h3 class="offer-card__title">Ebook Unlock Your Mind + Tips</h3>
+          <p class="offer-card__desc">
+            La nostra metodologia completa e il knowledge per trasformare il tuo corpo e la tua mente.
+          </p>
+        </div>
+        <div class="offer-card reveal reveal-delay-3">
+          <div class="offer-card__line"></div>
+          <h3 class="offer-card__title">Videocall di Check-In</h3>
+          <p class="offer-card__desc">
+            Revisioni periodiche per tracciare i progressi, correggere la rotta e mantenerti motivato.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+       SECTION 4 — COME FUNZIONA
+       ============================================ -->
+    <section class="process" id="come-funziona">
+      <div class="process__header">
+        <p class="process__label reveal">Come Funziona</p>
+        <h2 class="process__title reveal reveal-delay-1">I prossimi step</h2>
+      </div>
+      <div class="process__steps">
+        <!-- Step 1 -->
+        <div class="step reveal">
+          <div class="step__icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              ></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+          <p class="step__number">01</p>
+          <h3 class="step__heading">Compila il Form</h3>
+          <p class="step__desc">Raccontaci dove sei e dove vuoi arrivare.</p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="process__arrow reveal reveal-delay-1">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step reveal reveal-delay-2">
+          <div class="step__icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+          </div>
+          <p class="step__number">02</p>
+          <h3 class="step__heading">Call Conoscitiva</h3>
+          <p class="step__desc">
+            Una chiamata gratuita per conoscerci, capire i tuoi obiettivi e
+            costruire fiducia.
+          </p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="process__arrow reveal reveal-delay-3">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step reveal reveal-delay-4">
+          <div class="step__icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
+          <p class="step__number">03</p>
+          <h3 class="step__heading">Programma su Misura</h3>
+          <p class="step__desc">
+            Il tuo piano personalizzato inizia qui. Progressioni chiare,
+            risultati misurabili.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+       SECTION 5 — CTA FINALE
+       ============================================ -->
+    <section class="final-cta" id="candidati">
+      <div class="final-cta__border"></div>
+      <h2 class="final-cta__title reveal">Pronto a Iniziare?</h2>
+      <p class="final-cta__sub reveal reveal-delay-1">
+        Non aspettare il momento giusto. Crealo.
+      </p>
+      <!-- sostituire href con link Google Form -->
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSd6aASW0mGYugOE4DOtBxQ_4JYq_Vl9X-SoKi3AWypTYrqfmA/viewform?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPMTI0MDI0NTc0Mjg3NDE0AAGnjOpZPVjb2PAhMLFPEYhLd1v0vhCTFtmZL478CjUmymc3bJMJMXEqtqBcQh8_aem_eYMfGxPBQNxQANS1KUqo1A"
+        class="btn-cta reveal reveal-delay-2"
+        >Inizia il Tuo Percorso</a
+      >
+    </section>
+
+    <!-- ============================================
+       SECTION 6 — FOOTER
+       ============================================ -->
+    <footer class="footer">
+      <div class="footer__left">
+        <div class="footer__logo">Unlock Your Mind</div>
+        <div class="footer__info">
+          <p><a href="#privacy" class="footer__link">Privacy</a></p>
+          <p>Zanon Giovanni</p>
+          <p>P.IVA: 04610150247</p>
+        </div>
+      </div>
+      <div class="footer__right">
+        <div class="footer__social">
+          <!-- Instagram SVG icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+            />
+          </svg>
+          <a
+            href="https://instagram.com/project_uym"
+            target="_blank"
+            rel="noopener"
+            class="footer__handle"
+            >@project_uym</a
+          >
+        </div>
+        <div class="footer__contact">
+          <a href="mailto:unlockyourmindsw@gmail.com" class="footer__link">unlockyourmindsw@gmail.com</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Language switching script - MUST load before inline script -->
+    <!-- ============================================
+       JAVASCRIPT — Animazioni & Interazioni
+       ============================================ -->
+    <script>
+      // Language switching
+      function setLanguage(lang) {
+        localStorage.setItem('siteLang', lang);
+        if (lang === 'en') {
+          window.location.href = 'index-en.html';
+        } else {
+          window.location.href = 'index.html';
+        }
+      }
+
+      // Update active button on load
+      document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.lang-btn');
+        buttons.forEach(btn => {
+          if (btn.textContent === 'EN') {
+            btn.onclick = function() { setLanguage('en'); };
+          } else {
+            btn.onclick = function() { setLanguage('it'); };
+          }
+        });
+      });
+
+      (function () {
+        "use strict";
+
+        /* ---- IntersectionObserver: fade-in / slide-up ---- */
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px 0px -40px 0px",
+          },
+        );
+
+        revealElements.forEach(function (el) {
+          revealObserver.observe(el);
+        });
+
+        /* ---- Parallax leggero sulla foto "Chi Sono" ---- */
+        const aboutImage = document.getElementById("aboutImage");
+
+        if (aboutImage) {
+          var ticking = false;
+
+          function updateParallax() {
+            var rect = aboutImage.getBoundingClientRect();
+            var windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight && rect.bottom > 0) {
+              var scrolled =
+                (windowHeight - rect.top) / (windowHeight + rect.height);
+              var yOffset = (scrolled - 0.5) * 40;
+              aboutImage.style.transform =
+                "translateY(" + yOffset + "px) scale(1.05)";
+            }
+            ticking = false;
+          }
+
+          window.addEventListener(
+            "scroll",
+            function () {
+              if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+              }
+            },
+            { passive: true },
+          );
+        }
+
+        /* ---- Smooth scroll per anchor links ---- */
+        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+          anchor.addEventListener("click", function (e) {
+            var targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            e.preventDefault();
+            var target = document.querySelector(targetId);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+      })();
+    </script>
+
+  </body>
+</html>
