@@ -122,6 +122,7 @@
         z-index: 100;
         display: flex;
         gap: 12px;
+        transition: opacity 0.3s ease;
       }
 
       .lang-btn {
@@ -743,7 +744,12 @@
         .footer {
           flex-direction: column;
           gap: 20px;
+          align-items: center;
           text-align: center;
+        }
+
+        .footer__right {
+          align-items: center;
         }
       }
 
@@ -1168,6 +1174,23 @@
             },
             { passive: true },
           );
+        }
+
+        /* ---- Nascondi lang switcher fuori dall'hero ---- */
+        const langSwitcher = document.querySelector(".lang-switcher");
+        const heroSection = document.getElementById("hero");
+
+        if (langSwitcher && heroSection) {
+          const heroObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                langSwitcher.style.opacity = entry.isIntersecting ? "1" : "0";
+                langSwitcher.style.pointerEvents = entry.isIntersecting ? "auto" : "none";
+              });
+            },
+            { threshold: 0 }
+          );
+          heroObserver.observe(heroSection);
         }
 
         /* ---- Smooth scroll per anchor links ---- */
