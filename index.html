@@ -747,9 +747,28 @@
         }
       }
 
-      @media (max-width: 600px) {
+            @media (max-width: 600px) {
+        .hero {
+          height: auto;
+          min-height: 85vh;
+          padding: 60px 0 40px 0;
+        }
+
+        .hero__content {
+          padding: 0 20px;
+        }
+
         .hero__title {
           font-size: clamp(2.5rem, 12vw, 4rem);
+        }
+
+        .hero__tagline {
+          font-size: clamp(0.9rem, 2vw, 1.2rem);
+          margin-bottom: 32px;
+        }
+
+        .hero__scroll {
+          bottom: 20px;
         }
 
         .about,
@@ -757,6 +776,7 @@
         .final-cta {
           padding: 80px 20px;
         }
+      }
       }
     </style>
   </head>
